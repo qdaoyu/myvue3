@@ -34,7 +34,7 @@ Vue.use(ElementUI)
 //全局配置
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
-axios.defaults.baseURL = '/api'
+// axios.defaults.baseURL = '/api'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

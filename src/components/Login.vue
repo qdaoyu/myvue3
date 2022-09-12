@@ -48,7 +48,7 @@ export default {
             } else {
                 //校验用户名和密码是否正确;
                 // this.$router.push({ path: "/personal" });
-                // axios1
+                // axios
                 //     .post("/login/", {
                 //         name: this.user.username,
                 //         password: this.user.password
@@ -78,9 +78,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .login {
-    width: 100%;
+    width: 100% ;
     height: 100% ;
-    background: url("../assets/background.jpg") no-repeat;
+    background: url("../assets/zhuling.jpg") no-repeat;
     background-size: cover;
     overflow: hidden;
 }

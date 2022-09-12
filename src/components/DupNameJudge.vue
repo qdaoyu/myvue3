@@ -76,7 +76,7 @@
             // console.log(this.fileList[-1])
             this.$axios({
               method:"post",
-              url: "http://127.0.0.1:8082/upload",
+              url: "/api/upload",
               headers:{
                 'Content-Type': 'multipart/form-data',
               },
