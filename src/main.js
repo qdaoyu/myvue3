@@ -10,14 +10,16 @@ import store from './store'
 
 
 //拦截器全局引入!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// import { postRequest } from './utils/api';  如何使用呢:在组件中使用this.postRequest即为调用
+// 如何使用呢:在组件中使用this.postRequest即为调用
+import { postRequest } from './utils/api';  
+
 // import { putRequest } from './utils/api';
-import { getRequest } from './utils/api';
+// import { getRequest } from './utils/api';
 // import { deleteRequest } from './utils/api'; 
 //插件形式使用请求
-// Vue.prototype.postRequest = postRequest;
+Vue.prototype.postRequest = postRequest;
 // Vue.prototype.putRequest = putRequest;
-Vue.prototype.gettRequest = gettRequest;
+// Vue.prototype.getRequest = getRequest;
 // Vue.prototype.deleteRequest = deleteRequest;
 
 

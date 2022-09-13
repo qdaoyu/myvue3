@@ -4,7 +4,7 @@
         ref="loginForm" 
         :rules="rules" 
         v-loading="loading"
-        element-loading-text="正在登陆..."
+        element-loading-text="正在登录..."
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(0,0,0,0.8)"
         :model="loginForm" 
@@ -31,6 +31,7 @@
   
 <script>
 import axios from 'axios';
+import { postRequest } from '../utils/api';
 
 export default {
     name: 'Login2',
@@ -65,21 +66,30 @@ export default {
                             'Content-Type': 'multipart/form-data',
                         },
                         data: this.loginForm
-                    }).then(
+                    })
+
+                    // postRequest("/api/login",this.loginForm)
+                    .then(
                         res => {
-                            this.loading = false
-                            if (res.data.code == 200) {
+                            this.loading = false;
+                            console.log(res)
+                            if (res){
+                                if ( res.code == 200) {
                                 //存储用户token
                                 // const tokenStr = res.obj.tokenHead+res.obj.token
                                 // window.sessionStorage.setItem("tokenStr",tokenStr)
-                                this.$message.success("帐号密码正确")
-                                console.log(res.data)
+                                // this.$message.success("帐号密码正确")
+                                console.log(res)
+                                // console.log(res.message)
                                 //跳转页面
                                 
                             }else{
-                                this.$message.error("帐号密码错误")
+                                // this.$message.error("帐号密码错误")
+                                this.$message.error(res)
                                 console.log("失败")
                             }
+                            }
+                            
 
                         }, err => {
                         });
@@ -89,62 +99,6 @@ export default {
                 }
             });
         },
-
-        //校验用户名和密码是否正确;
-        // this.$axios({
-        //                     method: "post",
-        //                     url: "http://127.0.0.1:8082/login",
-        //                     headers: {
-        //                         'Content-Type': 'multipart/form-data',
-        //                     },
-        //                     data: form
-        //                 }).then(
-        //                     res => {
-
-        //                     }, err => {
-        //                     });
-        //             } else {
-        //                 this.$message.error("请输入所有字段!");
-        //                 return false;
-        //             }
-        // axios
-        //                 .post("/login", {
-        //                     name: this.loginForm.username,
-        //                     password: this.loginForm.password
-        //                 })
-        //                 .then(res => {
-        //                     // console.log("输出response.data.status", res.data.status);
-        //                     if (res.data.status === 200) {
-        //                         console.log(this.$message.success("帐号密码正确"))
-        //                         // this.$router.push({ path: "/personal" });
-        //                     } else {
-        //                         alert("您输入的用户名或密码错误！");
-        //                     }
-        //                 });
-        //     //判断所有
-        //     this.$refs.loginForm.validate((valid) => {
-        //         if (valid) {
-
-        //             //     this.$axios.post("/login").then(response =>{
-        //             //         // if response.data == 
-        //             //     },error =>{
-        //             //         console.log(error.message)
-        //             //     })
-        //             //     this.$message.success("登录成功");
-        //             // } else {
-        //             //     this.$message.error("请输入所有字段!");
-        //             //     return false;
-        //             // }
-        //             console.log("123")
-
-        //         }else{
-        //             console.log("123")
-        //         }
-        //     )   
-        //     // 校验用户名和密码是否正确;
-        //     // this.$router.push({ path: "/personal" });
-
-        // },
         updateCaptcha() {
             this.captchaUrl = '/captcha?time' + new Date();
         }

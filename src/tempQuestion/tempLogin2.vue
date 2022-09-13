@@ -1,6 +1,14 @@
 <template>
     <div class="login">
-        <el-form ref="loginForm" :rules="rules" :model="loginForm" class="loginContainer">
+        <el-form 
+        ref="loginForm" 
+        :rules="rules" 
+        v-loading="loading"
+        element-loading-text="正在登陆..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0,0,0,0.8)"
+        :model="loginForm" 
+        class="loginContainer">
             <h3 class="loginTitle">系统登录</h3>
             <el-form-item prop="username">
                 <el-input type="text" auto-complete="false" v-model="loginForm.username" placeholder="请输入用户名">
@@ -22,11 +30,10 @@
 </template>
   
 <script>
-// import axios from 'axios';
-// import { postRequest } from '../utils/app';
+import axios from 'axios';
 
 export default {
-    name: 'tempLogin2',
+    name: 'Login2',
     data() {
         return {
             captchaUrl: "/captcha?time=" + new Date(),
@@ -35,6 +42,7 @@ export default {
                 password: "",
                 // code: ""
             },
+            loading:false,
             checked: true,
             rules: {
                 username: [{ required: true, message: "请输入用户名", trigger: 'blur' }],
@@ -48,50 +56,39 @@ export default {
             this.$refs.loginForm.validate((valid) => {
                 if (valid) {
                     //校验用户名和密码是否正确;
+                    this.loading = true;
+                    this.$axios({
+                        method: "post",
+                        // url: "http://localhost:8082/login",
+                        url: "/api/login",
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                        },
+                        data: this.loginForm
+                    }).then(
+                        res => {
+                            this.loading = false
+                            console.log(res)
+                            if (res){
+                                if ( res.code == 200) {
+                                //存储用户token
+                                // const tokenStr = res.obj.tokenHead+res.obj.token
+                                // window.sessionStorage.setItem("tokenStr",tokenStr)
+                                // this.$message.success("帐号密码正确")
+                                // console.log(res.data)
+                                console.log(res)
+                                //跳转页面
+                                
+                            }else{
+                                // this.$message.error("帐号密码错误")
+                                console.log(res)
+                                console.log("失败")
+                            }
+                            }
+                            
 
-                    //发送表单
-                    // this.$axios({
-                    //     method: "post",
-                    //     // url: "http://localhost:8082/login",
-                    //     url: "/api/login",
-                    //     headers: {
-                    //         'Content-Type': 'multipart/form-data',
-                    //     },
-                    //     data: this.loginForm
-                    //     })
-
-                    //发送Json串
-
-                    console.log({"username":this.loginForm.username,"password":this.loginForm.password})
-                    
-                    postRequest('/api/login',{"username":this.loginForm.username,"password":this.loginForm.password})
-                    .then(resp=>{
-                        console.log(resp)
-                        alert(resp)})
-                    
-                    // this.$axios({
-                    //     method: "post",
-                    //     // url: "http://localhost:8082/login",
-                    //     url: "/api/loginJson",
-                    //     headers: {
-                    //         'Content-Type': 'application/json;charset=UTF-8',
-                    //     },
-                    //     data: {"username":this.loginForm.username,"password":this.loginForm.password}
-
-                    
-                    // .then(
-                    //     res => {
-                    //         // console.log(res.data)
-                    //         if (res.data.code == 200) {
-                    //             this.$message.success("帐号密码正确")
-                    //             console.log(res.data)
-                    //         } else {
-                    //             this.$message.error("帐号密码错误")
-                    //             console.log("失败")
-                    //         }
-
-                    //     }, err => {
-                    //     });
+                        }, err => {
+                        });
                 } else {
                     this.$message.error("请输入所有字段!");
                     return false;

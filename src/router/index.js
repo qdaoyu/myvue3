@@ -11,6 +11,7 @@ import Home from '@/components/Home'
 import Test1 from '@/views/Test1'
 import Test2 from '@/views/Test2'
 import Test3 from '@/views/Test2'
+import TextareaInput from '@/components/TextAreaInput'
 
 Vue.use(Router)
 
@@ -18,9 +19,15 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      component: login,
+      path: '/',
+      name: 'Login2',
+      component: Login2,
+      hidden: true,
+    },
+    {
+      path: '/textInput',
+      name: 'TextareaInput',
+      component: TextareaInput,
       hidden: true,
     },
     {
@@ -36,12 +43,7 @@ export default new Router({
         },
       ]
     },
-    {
-      path: '/',
-      name: 'Login2',
-      component: Login2,
-      hidden: true,
-    },
+    
     {
       path: '/tempLogin2',
       name: 'tempLogin2',
