@@ -1,12 +1,12 @@
 <template>
     <div>
-        员工培训
+        操作员管理
     </div>
     
 </template>
 <script>
 export default{
-    name :"perTrain"
+    name :"SysAdmin"
 }
 </script>
 <style scoped>

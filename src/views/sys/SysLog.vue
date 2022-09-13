@@ -1,12 +1,12 @@
 <template>
     <div>
-        员工调薪
+        操作日志
     </div>
     
 </template>
 <script>
 export default{
-    name :"perSalary"
+    name :"SysLog"
 }
 </script>
 <style scoped>

@@ -1,12 +1,12 @@
 <template>
     <div>
-        员工调动
+        备份恢复数据库
     </div>
     
 </template>
 <script>
 export default{
-    name :"perMv"
+    name :"SysData"
 }
 </script>
 <style scoped>

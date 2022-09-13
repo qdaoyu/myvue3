@@ -1,12 +1,12 @@
 <template>
     <div>
-        员工奖惩
+        重名查询
     </div>
     
 </template>
 <script>
 export default{
-    name :"perEc"
+    name :"DupNameJudge"
 }
 </script>
 <style scoped>

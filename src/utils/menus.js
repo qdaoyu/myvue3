@@ -38,7 +38,18 @@ export const formatRoutes = (routes) => {
             iconCls:iconCls,
             children:children,
             component(resolve){
-                require(['../views/'+component+'.vue'],resolve);
+                if (component.startsWith("user")){
+                    require(['../views/user/'+component+'.vue'],resolve);
+                }else if(component.startsWith("tool")){
+                    require(['../views/tool/'+component+'.vue'],resolve);
+                }else if(component.startsWith("sys")){
+                    require(['../views/sys/'+component+'.vue'],resolve);
+                }else if(component.startsWith("dashboard")){
+                    require(['../views/dashboard/'+component+'.vue'],resolve);
+                }else if(component.startsWith("achive")){
+                    require(['../views/achive/'+component+'.vue'],resolve);
+                }
+                
             }
         }
         fmtRoutes.push(fmtRouter)

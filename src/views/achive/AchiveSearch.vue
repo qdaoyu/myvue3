@@ -1,12 +1,12 @@
 <template>
     <div>
-        高级资料
+        业绩查询
     </div>
     
 </template>
 <script>
 export default{
-    name :"EmAdv"
+    name :"AchiveSearch"
 }
 </script>
 <style scoped>

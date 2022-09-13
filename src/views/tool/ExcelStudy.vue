@@ -1,12 +1,12 @@
 <template>
     <div>
-        员工奖惩
+        Excel学习
     </div>
     
 </template>
 <script>
 export default{
-    name :"perEc"
+    name :"ExcelStudy"
 }
 </script>
 <style scoped>

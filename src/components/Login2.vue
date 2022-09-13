@@ -109,8 +109,8 @@ export default {
 <style scoped>
 .login {
     width: 100%;
-    height: 100%;
-    background: url("../assets/zhuling.jpg") no-repeat;
+    height: 960px;
+    background: url("../assets/boniu.jpg") no-repeat;
     background-size: cover;
     overflow: hidden;
 }
@@ -118,14 +118,14 @@ export default {
 .loginContainer {
     border-radius: 15px;
     background-clip: padding-box;
-    margin: 180px auto;
+    margin: 350px auto;
     width: 350px;
     padding: 15px 35px 15px 35px;
     background: rgb(255, 255, 255);
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cacac6;
     text-align: left;
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
 .loginTitle {
