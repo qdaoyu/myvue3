@@ -6,27 +6,19 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
+import store from './store'
 
-//安装vuestic时提示的操作
-// import { createApp } from 'vue'
-// import { createVuestic } from 'vuestic-ui'
-// import 'vuestic-ui/css'
 
-// const app = createApp(App)
-// app.use(createVuestic())
-//---------------------
-
-//安装ant-design时提示的操作
-// import { createApp } from 'vue';
-import Antd from 'ant-design-vue';
-// import { DatePicker } from 'ant-design-vue';
-import  'ant-design-vue/dist/antd.css';
-// const app = createApp(App);
-// app.use(Antd);
-Vue.use(Antd)
-// Vue.use(DatePicker);
-// app.use(Antd).mount('#app');
-//---------------------
+//拦截器全局引入!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// import { postRequest } from './utils/api';  如何使用呢:在组件中使用this.postRequest即为调用
+// import { putRequest } from './utils/api';
+import { getRequest } from './utils/api';
+// import { deleteRequest } from './utils/api'; 
+//插件形式使用请求
+// Vue.prototype.postRequest = postRequest;
+// Vue.prototype.putRequest = putRequest;
+Vue.prototype.gettRequest = gettRequest;
+// Vue.prototype.deleteRequest = deleteRequest;
 
 
 
@@ -39,6 +31,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
