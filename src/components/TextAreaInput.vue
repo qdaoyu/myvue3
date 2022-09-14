@@ -91,17 +91,17 @@ export default {
             }, {
                 value: '选项5',
                 label: '祛妍堂',
-                disabled: true,
+                disabled: false,
             }
                 , {
                 value: '选项6',
                 label: '尚美',
-                disabled: true,
+                disabled: false,
             }
                 , {
                 value: '选项7',
                 label: '美丽妆阁',
-                disabled: true,
+                disabled: false,
             }],
             value: '',
             selectLabel: "",
@@ -141,15 +141,17 @@ export default {
                 // let timeout = parseInt(30000);
                 this.$axios({
                     method: "post",
-                    // url: "http://localhost:8082/login",
+                    // url: "http://localhost:8082/calDupName",
                     url: "/api/calDupName",
                     timeout: 1 * 60 * 100000,
                     headers: {
                         "Content-Type": "application/json",
+                        // "Authorization":window.localStorage.getItem('tokenStr')
                     },
                     data: { "textArea": this.textarea, "label": this.selectLabel }
                 }).then(
                     res => {
+                        console.log(res)
                         if (res.code == 200) {
                             console.log(res)
                             this.$message.success(JSON.stringify(res.data))
@@ -212,7 +214,7 @@ export default {
 .c1 {
     width: 100%;
     height: 960px;
-    background: url("../assets/风景.jpg") no-repeat;
+    background: url("../assets/background.jpg") no-repeat;
     background-size: cover;
     opacity: 0.8;
 }

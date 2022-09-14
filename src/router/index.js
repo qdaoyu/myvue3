@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import homePage from '@/components/HomePage'
-import login from '@/components/Login'
-import my from '@/components/My'
+import Login from '@/components/Login'
 import dupNameJudge from '@/components/DupNameJudge'
-import Login2 from '@/components/Login2'
 import Page404 from '@/components/pageError/page404'
-import tempLogin2 from '@/tempQuestion/tempLogin2'
 import Home from '@/components/Home'
 import Test1 from '@/views/Test1'
 import Test2 from '@/views/Test2'
 import Test3 from '@/views/Test2'
 import TextareaInput from '@/components/TextAreaInput'
+import TempMenu from '@/components/TempMenu'
 
 Vue.use(Router)
 
@@ -20,14 +18,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Login2',
-      component: Login2,
+      name: 'Login',
+      component: Login,
       hidden: true,
     },
     {
       path: '/textInput',
       name: 'TextareaInput',
       component: TextareaInput,
+      hidden: true,
+    },
+    {
+      path: '/tempMenu',
+      name: 'TempMenu',
+      component: TempMenu,
       hidden: true,
     },
     {
@@ -44,12 +48,6 @@ export default new Router({
       ]
     },
     
-    {
-      path: '/tempLogin2',
-      name: 'tempLogin2',
-      component: tempLogin2,
-      hidden: true,
-    },
     {
       path: '/dupNameJudge',
       name: 'dupNameJudge',
