@@ -6,9 +6,9 @@
                 <el-aside width="200px">
                     <!-- select菜单激活回调 -->
                     <!-- <el-menu @select="menuClick"> -->
-                    <!-- v-if  v-show -->
-                    <el-menu router>
-                        <el-submenu index="1" v-for="(item,index) in this.$router.options.routes" :key="index" v-if="!item.hidden">
+                    <!-- v-if  v-show this.$router.options.routes-->
+                    <el-menu router unique-opened>
+                        <el-submenu index="index+''" v-for="(item,index) in routes" :key="index" v-if="!item.hidden">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
                                 <span>{{item.name}}</span>
@@ -39,6 +39,11 @@ export default {
 
         //     this.$router.push(index)
         // }
+    },
+    computed:{
+        routes(){
+            return this.$store.state.routes;
+        }
     }
 
 }

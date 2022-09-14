@@ -12,15 +12,29 @@ import store from './store'
 //拦截器全局引入!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // 如何使用呢:在组件中使用this.postRequest即为调用
 import { postRequest } from './utils/api';  
-
-// import { putRequest } from './utils/api';
-// import { getRequest } from './utils/api';
-// import { deleteRequest } from './utils/api'; 
+import { putRequest } from './utils/api';
+import { getRequest } from './utils/api';
+import { deleteRequest } from './utils/api'; 
+import { initMenu } from './utils/menus';
 //插件形式使用请求
 Vue.prototype.postRequest = postRequest;
-// Vue.prototype.putRequest = putRequest;
-// Vue.prototype.getRequest = getRequest;
-// Vue.prototype.deleteRequest = deleteRequest;
+Vue.prototype.putRequest = putRequest;
+Vue.prototype.getRequest = getRequest;
+Vue.prototype.deleteRequest = deleteRequest;
+
+
+//全局前置守卫,跳转之前必须经过经过前置守卫，类似拦截器
+// router.beforeEach((to,from,next)=>{
+//   if(window.sessionStorage.getItem("tokenStr")){
+//     initMenu(router,store);
+//     next();
+//   }else{
+//     // if(to.path=="/"){
+//       next()
+//     // }
+//   }
+    
+// })
 
 
 
