@@ -10,11 +10,11 @@ axios.default.timeout = 500000
 //请求拦截器
 axios.interceptors.request.use(config => {
   //拿tokenStorage,如果存在token,请求携带这个token
-  console.log(window.localStorage.getItem('tokenStr'))
+  console.log("测试请求是否被拦截")
   if (window.localStorage.getItem('tokenStr')) {
-    // console.log("进来")
+    console.log("进来")
     config.headers['Authorization'] = window.localStorage.getItem('tokenStr')
-    // console.log("出去")
+    console.log("出去")
   }
   return config;
 }, error => {
@@ -46,7 +46,17 @@ axios.interceptors.response.use(success => {
       setTimeout(function(){
         router.push("/")
         // window.location.href = "http://localhost:8080"
-      }, 3000);
+      }, 2000);
+      
+    };
+    if (success.data.code == 2005) {
+      Message.error("token过期，请重新登录")
+      // this.router.push("/")
+      //延时2秒
+      setTimeout(function(){
+        router.push("/")
+        // window.location.href = "http://localhost:8080"
+      }, 2000);
       
     }
     if (success.data.message &&  success.data.code == 200) {

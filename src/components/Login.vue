@@ -81,7 +81,7 @@ export default {
                                 // console.log(tokenStr)
                                 console.log(window.localStorage.getItem("tokenStr"))
                                 //跳转页面
-                                this.$router.push('/tempMenu')
+                                this.$router.push('/home')
                                 
                             }else{
                                 // this.$message.error("帐号密码错误")

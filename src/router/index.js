@@ -38,14 +38,7 @@ export default new Router({
       path: '/page404',
       name: 'Page404',
       component: Page404,
-      // hidden: false,
-      children: [
-        {
-          path: '/test3',
-          name: '选项3',
-          component: Test3
-        },
-      ]
+      hidden: true,
     },
     
     {

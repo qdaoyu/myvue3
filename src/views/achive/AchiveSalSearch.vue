@@ -1,12 +1,12 @@
 <template>
     <div>
-        重名查询
+        工资条查询
     </div>
     
 </template>
 <script>
 export default{
-    name :"DupNameJudge"
+    name :"AchiveSalSearch"
 }
 </script>
 <style scoped>

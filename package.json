@@ -13,10 +13,11 @@
     "ant-design-vue": "^1.7.2",
     "axios": "^0.27.2",
     "element-ui": "^2.15.9",
+    "font-awesome": "^4.7.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuestic-ui": "^1.4.10",
-    "vuex": "^4.0.2"
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
