@@ -1,6 +1,6 @@
 <template>
     <div>
-        业绩查询
+        <h1  style="font-size: 60px;color:crimson">业绩查询待开发</h1>
     </div>
     
 </template>

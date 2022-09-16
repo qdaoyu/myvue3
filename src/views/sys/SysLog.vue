@@ -1,6 +1,6 @@
 <template>
     <div>
-        操作日志
+        <h1  style="font-size: 60px;color:crimson">操作日志待开发</h1>
     </div>
     
 </template>

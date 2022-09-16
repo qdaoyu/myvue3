@@ -1,6 +1,6 @@
 <template>
     <div>
-        可视乎看板导航
+        <h1  style="font-size: 60px;color:crimson">可视化看板待开发</h1>
     </div>
     
 </template>

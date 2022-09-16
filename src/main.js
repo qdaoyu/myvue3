@@ -27,6 +27,19 @@ Vue.prototype.deleteRequest = deleteRequest;
 router.beforeEach((to,from,next)=>{
   if(window.localStorage.getItem("tokenStr")){
     initMenu(router,store);
+    console.log("测试是否经过前置守卫")
+    if(!window.localStorage.getItem("user")){
+      console.log("测试是否进入前置守卫")
+      getRequest('/api/admin/info').then(resp=>{
+        console.log(resp)
+        if(resp){
+          console.log("测试是否经过响应")
+          //存入用户信息，判断用户信息是否存在
+          window.localStorage.setItem('user',JSON.stringify(resp));
+          next()
+        }
+      })
+    }
     next();
   }else{
     if(to.path=="/"){

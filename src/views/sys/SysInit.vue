@@ -1,6 +1,6 @@
 <template>
     <div>
-        初始化数据库
+        <h1  style="font-size: 60px;color:crimson">初始化数据库待开发</h1>
     </div>
     
 </template>

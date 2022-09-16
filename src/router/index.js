@@ -5,9 +5,6 @@ import Login from '@/components/Login'
 import dupNameJudge from '@/components/DupNameJudge'
 import Page404 from '@/components/pageError/page404'
 import Home from '@/components/Home'
-import Test1 from '@/views/Test1'
-import Test2 from '@/views/Test2'
-import Test3 from '@/views/Test2'
 import TextareaInput from '@/components/TextAreaInput'
 import TempMenu from '@/components/TempMenu'
 
@@ -50,19 +47,9 @@ export default new Router({
     {
       //动态渲染
       path: '/home',
-      name: '导航一',
+      name: 'Home',
       component: Home,
       children: [
-        {
-          path: '/test1',
-          name: '选项1',
-          component: Test1
-        },
-        {
-          path: '/test2',
-          name: '选项2',
-          component: Test2
-        },
       ]
     },
 

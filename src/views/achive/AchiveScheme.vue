@@ -1,6 +1,6 @@
 <template>
     <div>
-        绩效方案
+        <h1  style="font-size: 60px;color:crimson">绩效方案待开发</h1>
     </div>
     
 </template>

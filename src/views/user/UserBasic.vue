@@ -1,6 +1,6 @@
 <template>
     <div>
-        基础信息
+        <h1  style="font-size: 60px;color:crimson">基础信息待开发</h1>
     </div>
     
 </template>
