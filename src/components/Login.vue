@@ -1,14 +1,8 @@
 <template>
     <div class="login">
-        <el-form 
-        ref="loginForm" 
-        :rules="rules" 
-        v-loading="loading"
-        element-loading-text="正在登录..."
-        element-loading-spinner="el-icon-loading"
-        element-loading-background="rgba(0,0,0,0.8)"
-        :model="loginForm" 
-        class="loginContainer">
+        <el-form ref="loginForm" :rules="rules" v-loading="loading" element-loading-text="正在登录..."
+            element-loading-spinner="el-icon-loading" element-loading-background="rgba(0,0,0,0.8)" :model="loginForm"
+            class="loginContainer">
             <h3 class="loginTitle">系统登录</h3>
             <el-form-item prop="username">
                 <el-input type="text" auto-complete="false" v-model="loginForm.username" placeholder="请输入用户名">
@@ -41,7 +35,7 @@ export default {
                 password: "",
                 // code: ""
             },
-            loading:false,
+            loading: false,
             checked: true,
             rules: {
                 username: [{ required: true, message: "请输入用户名", trigger: 'blur' }],
@@ -66,42 +60,44 @@ export default {
                         data: this.loginForm
                     })
 
-                    // postRequest("/api/login",this.loginForm)
-                    .then(
-                        res => {
-                            this.loading = false;
-                            console.log(res)
-                            if (res){
-                                if ( res.code == 200) {
-                                //存储用户token
-                                const tokenStr = "Bearer "+ res.data.token
-                                window.localStorage.setItem("tokenStr",tokenStr)
-                                // this.$message.success("帐号密码正确")
+                        // postRequest("/api/login",this.loginForm)
+                        .then(
+                            res => {
+                                this.loading = false;
                                 console.log(res)
-                                // console.log(tokenStr)
-                                console.log(window.localStorage.getItem("tokenStr"))
-                                //跳转页面
-                                this.$router.push('/home')
-                                
-                            }else{
-                                // this.$message.error("帐号密码错误")
-                                this.$message.error(res)
-                                console.log("失败")
-                            }
-                            }
-                            
+                                if (res) {
+                                    if (res.code == 200) {
+                                        //存储用户token跟基础信息
+                                        const tokenStr = "Bearer " + res.data.token;
+                                        window.localStorage.setItem("tokenStr", tokenStr);
+                                        window.localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo));
+                                        console.log(res);
+                                        console.log(window.localStorage.getItem("tokenStr"));
+                                        // console.log(res.data.userInfo)
+                                        // console.log(window.localStorage.getItem("userInfo"))
+                                        console.log("----------")
+                                        //跳转页面
+                                        let path = this.$route.query.redirect;
+                                        //如果path是/或者undefined，那么就去首页，否则就去path
+                                        this.$router.replace((path == '/' || path == undefined) ? '/home' : path);
 
-                        }, err => {
-                        });
+
+                                    } else {
+                                        // this.$message.error("帐号密码错误")
+                                        this.$message.error(res)
+                                        console.log("失败")
+                                    }
+                                }
+
+
+                            }, err => {
+                            });
                 } else {
                     this.$message.error("请输入所有字段!");
                     return false;
                 }
             });
         },
-        updateCaptcha() {
-            this.captchaUrl = '/captcha?time' + new Date();
-        }
     }
 }
 </script>

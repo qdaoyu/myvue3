@@ -20,6 +20,12 @@ export default new Router({
       hidden: true,
     },
     {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+      hidden: true,
+    },
+    {
       path: '/textInput',
       name: 'TextareaInput',
       component: TextareaInput,

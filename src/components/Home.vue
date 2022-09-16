@@ -3,19 +3,21 @@
         <el-container>
             <el-header class="homeHeader">
                 <div class="title"> 秋刀🐟</div>
-                <el-dropdown>
+                <el-dropdown class="userInfo" @command="commandHandler">
+
                     <span class="el-dropdown-link">
-                        {{user.name}}<i img :src="user.userface"></i>
+                        <i style="color: aliceblue;">{{user.name}}</i><img src="@/assets/headPic/catHeadPic.png">
                     </span>
+
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>个人中心</el-dropdown-item>
-                        <el-dropdown-item>设置</el-dropdown-item>
-                        <el-dropdown-item>注销登录</el-dropdown-item>
+                        <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
+                        <el-dropdown-item command="setting">设置</el-dropdown-item>
+                        <el-dropdown-item command="logout">注销登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </el-header>
             <el-container>
-                <el-aside style="width:180px;height: 800px;">
+                <el-aside style="width:200px;height: 800px;">
                     <el-menu router unique-opened>
                         <el-submenu :index="index+''" v-for="(item,index) in routes" :key="index" v-if="!item.hidden">
                             <template slot="title">
@@ -30,6 +32,11 @@
 
                 </el-aside>
                 <el-main>
+                    <el-breadcrumb separator-class="el-icon-arrow-right" v-if="this.$router.currentRoute.path!='/home'">
+                        <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+                        <el-breadcrumb-item>{{this.$router.currentRoute.name}}</el-breadcrumb-item>
+                    </el-breadcrumb>
+                    <div class="homeWelcom" v-if="this.$router.currentRoute.path=='/home'">欢迎来到秋刀鱼塘</div>
                     <router-view></router-view>
                 </el-main>
             </el-container>
@@ -44,14 +51,36 @@ export default {
     name: "Home",
     data() {
         return {
-            user: JSON.parse(window.localStorage.getItem("user"))
+            user: JSON.parse(window.localStorage.getItem("userInfo"))
         }
     },
     methods: {
-        // menuClick(index){
+        commandHandler(command) {
+            if (command == "logout") {
+                this.$confirm('此操作将注销登录, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    //清空用户信息，跳转到登录页
+                    window.localStorage.removeItem("tokenStr");
+                    window.localStorage.removeItem("userInfo");
+                    //清空菜单
+                    this.$store.commit('initRoutes', [])
+                    this.$message.success("注销成功")
+                    setTimeout(() => {
+                        this.$router.replace("/")
+                    }, 1000);
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消注销'
+                    });
+                });
+            }
 
-        //     this.$router.push(index)
-        // }
+        }
+        ,
     },
     computed: {
         routes() {
@@ -79,5 +108,27 @@ export default {
     font-family: 行楷;
     color: white;
     font-style: oblique;
+}
+
+.homeHeader .userInfo {
+    cursor: hand;
+
+
+}
+
+.el-dropdown-link img {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-left: 8px;
+    margin-bottom: 6px;
+}
+.homeWelcom{
+    text-align: center;
+    font-size: 30px;
+    font-family: 楷体;
+    color: rgb(10, 86, 248);
+    padding-top: 50px;
+
 }
 </style>

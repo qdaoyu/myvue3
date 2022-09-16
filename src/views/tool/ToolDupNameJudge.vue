@@ -4,6 +4,7 @@
             <div class="textArea">
                 <div class="textContainer">
                     <h2>重名查询</h2>
+                    
                     <el-input type="textarea" :rows="6" placeholder="请输入内容，每个名字后面都需要回车换行，若数据量大请利用剪切板"
                         v-model="textarea">
                     </el-input>

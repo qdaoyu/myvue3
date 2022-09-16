@@ -27,15 +27,16 @@ Vue.prototype.deleteRequest = deleteRequest;
 router.beforeEach((to,from,next)=>{
   if(window.localStorage.getItem("tokenStr")){
     initMenu(router,store);
-    console.log("测试是否经过前置守卫")
-    if(!window.localStorage.getItem("user")){
+    // console.log("测试是否经过前置守卫")
+    // console.log(window.localStorage.getItem("userInfo"))
+    if(!window.localStorage.getItem("userInfo")){
       console.log("测试是否进入前置守卫")
       getRequest('/api/admin/info').then(resp=>{
-        console.log(resp)
+        console.log("resp:",resp)
         if(resp){
           console.log("测试是否经过响应")
           //存入用户信息，判断用户信息是否存在
-          window.localStorage.setItem('user',JSON.stringify(resp));
+          window.localStorage.setItem('userInfo',JSON.stringify(resp));
           next()
         }
       })
@@ -44,6 +45,10 @@ router.beforeEach((to,from,next)=>{
   }else{
     if(to.path=="/"){
       next()
+    }else{
+      // window.location.href = "/"
+      // next()
+      next('/?redirect='+to.path)
     }
   }
     
