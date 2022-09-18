@@ -14,6 +14,7 @@ axios.interceptors.request.use(config => {
   if (window.localStorage.getItem('tokenStr')) {
     console.log("进来")
     config.headers['Authorization'] = window.localStorage.getItem('tokenStr')
+    config.headers['userID'] = window.localStorage.getItem('userID')
     console.log("出去")
   }
   return config;
@@ -25,10 +26,7 @@ axios.interceptors.request.use(config => {
 //响应拦截器
 axios.interceptors.response.use(success => {
   //业务逻辑错误
-  // Message.error({Message:'服务器被吃了'})
-
-  console.log(window.localStorage.getItem("token"))
-  console.log(success.data)
+  // console.log(window.localStorage.getItem("token"))
   if (success.status && success.status == 200) {
     // console.log(success.data.code)
     // console.log(success.data)
@@ -60,11 +58,13 @@ axios.interceptors.response.use(success => {
       
     }
     if (success.data.message &&  success.data.code == 200) {
-      Message.success(
-        success.data.message
-      )
+      // Message.success(
+      //   success.data.message
+      // )
     }
   }
+  console.log("测试2")
+  console.log(success)
   console.log(success.data)
   return success.data
 }, error => {

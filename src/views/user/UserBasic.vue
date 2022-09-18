@@ -1,12 +1,60 @@
 <template>
-    <div>
-        <h1  style="font-size: 60px;color:crimson">基础信息待开发</h1>
-    </div>
-    
-</template>
+    <el-table
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        prop="Name"
+        label="姓名"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="Phone"
+        label="手机"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="Username"
+        label="用户名"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="Namezh"
+        label="角色"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="Address"
+        label="地址"
+        width="280">
+
+      </el-table-column>
+    </el-table>
+  </template>
+
 <script>
 export default{
-    name :"UserBasic"
+    name :"UserBasic",
+    data(){
+        return {
+            tableData:[],
+        }
+    },
+    mounted(){
+        this.initUserInfo();
+    },
+    methods:{
+        initUserInfo(){
+            this.getRequest("/api/admin/basic/info").then(resp=>{
+                if(resp){
+                    var arr = []
+                    arr.push(resp.data)
+                    this.tableData = arr
+                }
+            })
+        }
+    }
+
+
 }
 </script>
 <style scoped>

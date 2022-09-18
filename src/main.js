@@ -23,6 +23,10 @@ Vue.prototype.getRequest = getRequest;
 Vue.prototype.deleteRequest = deleteRequest;
 
 
+
+
+
+
 // 全局前置守卫,跳转之前必须经过经过前置守卫，类似拦截器
 router.beforeEach((to,from,next)=>{
   if(window.localStorage.getItem("tokenStr")){
@@ -76,3 +80,7 @@ new Vue({
   render:h=>h(App)
 
 }).$mount('#app')
+
+//防止手动修改localstorage
+// window.addEventListener('storage', (e) => {
+//   localStorage.setItem(e.key, e.oldValue)} )

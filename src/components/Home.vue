@@ -65,6 +65,7 @@ export default {
                     //清空用户信息，跳转到登录页
                     window.localStorage.removeItem("tokenStr");
                     window.localStorage.removeItem("userInfo");
+                    window.localStorage.removeItem("userID");
                     //清空菜单
                     this.$store.commit('initRoutes', [])
                     this.$message.success("注销成功")

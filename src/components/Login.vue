@@ -70,6 +70,7 @@ export default {
                                         //存储用户token跟基础信息
                                         const tokenStr = "Bearer " + res.data.token;
                                         window.localStorage.setItem("tokenStr", tokenStr);
+                                        window.localStorage.setItem("userID", String(res.data.userInfo.id));
                                         window.localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo));
                                         console.log(res);
                                         console.log(window.localStorage.getItem("tokenStr"));
